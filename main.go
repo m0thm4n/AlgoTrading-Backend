@@ -1,10 +1,13 @@
 package main
 
 import (
+	"AlgoTrading/Database"
 	"AlgoTrading/Utils"
 )
 
 func main() {
-	Utils.GetProfile()
+	quote := Utils.GetProfile()
+
+	Database.Db(quote)
 }
 

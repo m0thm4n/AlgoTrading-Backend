@@ -2,7 +2,6 @@ package Utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"net/url"
@@ -54,16 +53,16 @@ type Profile struct {
 var quoteUrl = url.URL{
 	Scheme: "https",
 	Host: "financialmodelingprep.com",
-	Path: "/api/v3/quote/",
+	Path: "/api/v3/quote/AAPL",
 }
 
 var profileUrl = url.URL{
 	Scheme:     "https",
 	Host:       "financialmodelingprep.com",
-	Path:       "/api/v3/company/profile",
+	Path:       "/api/v3/company/profile/AAPL",
 }
 
-func GetProfile() {
+func GetProfile() []Quote {
 	response, err := http.Get(quoteUrl.String())
 	if err != nil {
 		log.Fatal(err)
@@ -81,5 +80,5 @@ func GetProfile() {
 		log.Fatal(jsonErr)
 	}
 
-	fmt.Println(data)
+	return data
 }
