@@ -1,6 +1,8 @@
 package main
 
-import "AlgoTrading/Utils"
+import (
+	"AlgoTrading/Utils"
+)
 
 func main() {
 	Utils.GetProfile()
