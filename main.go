@@ -8,6 +8,6 @@ import (
 func main() {
 	quote := Utils.GetProfile()
 
-	Database.Db(quote)
+	Database.DbConnect("localhost")
 }
 
