@@ -75,9 +75,9 @@ func GetQuote() []Quote {
 
 	var data []Quote
 
-	jsonErr := json.NewDecoder(response.Body).Decode(&data)
-	if jsonErr != nil {
-		log.Fatal(jsonErr)
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	return data

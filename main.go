@@ -13,11 +13,13 @@ import (
 func main() {
 	quote := Utils.GetQuote()
 	fmt.Println(quote)
-
-	// Database.DbConnect("localhost")
+  
+  // session := Database.DbConnect("localhost:8080/")
+	// Database.CreateTable(session)
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", API.HomeLink)
 	router.HandleFunc("/event", API.CreateQuote)
 	log.Fatal(http.ListenAndServe(":8080", router))
-}
+	profile := Utils.GetProfile()
+	fmt.Println(profile)
