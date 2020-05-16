@@ -53,17 +53,17 @@ type Profile struct {
 var quoteUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:   "/api/v3/quote/AAPL",
+	Path:   "/api/v3/quote/",
 }
 
 var profileUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:   "/api/v3/company/profile/AAPL",
+	Path:   "/api/v3/company/profile/",
 }
 
-func GetQuote() []Quote {
-	response, err := http.Get(quoteUrl.String())
+func GetQuote(symbol string) []Quote {
+	response, err := http.Get(quoteUrl.String() + symbol)
 	if err != nil {
 		log.Fatal(err)
 	}

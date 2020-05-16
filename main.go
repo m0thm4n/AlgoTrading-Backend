@@ -17,6 +17,6 @@ func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", API.HomeLink)
-	router.HandleFunc("/event", API.CreateQuote)
+	router.HandleFunc("/api/quote/{symbol}", API.CreateQuote).Methods("GET")
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

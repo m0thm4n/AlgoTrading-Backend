@@ -6,15 +6,17 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func HomeLink(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
 }
 
-var quote = Utils.GetQuote()
-
 func CreateQuote(w http.ResponseWriter, r *http.Request) {
+	symbol := mux.Vars(r)["symbol"]
+	quote := Utils.GetQuote(symbol)
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Kindly enter data with the event title and description only in order to update")
