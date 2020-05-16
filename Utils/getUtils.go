@@ -82,24 +82,3 @@ func GetQuote() []Quote {
 
 	return data
 }
-
-func GetProfile() Profile {
-	response, err := http.Get(profileUrl.String())
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	defer response.Body.Close()
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var data Profile
-
-	err = json.NewDecoder(response.Body).Decode(&data)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return data
-}
