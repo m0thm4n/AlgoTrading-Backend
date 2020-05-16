@@ -12,15 +12,16 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
 }
 
+var quote = Utils.GetQuote()
+
 func CreateQuote(w http.ResponseWriter, r *http.Request) {
-	var newEvent Utils.Quote
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Kindly enter data with the event title and description only in order to update")
 	}
 
-	json.Unmarshal(requestBody, &newEvent)
+	json.Unmarshal(requestBody, &quote)
 	w.WriteHeader(http.StatusCreated)
 
-	json.NewEncoder(w).Encode(newEvent)
+	json.NewEncoder(w).Encode(quote)
 }

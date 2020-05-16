@@ -2,8 +2,6 @@ package main
 
 import (
 	"AlgoTrading/API"
-	"AlgoTrading/Utils"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -11,8 +9,8 @@ import (
 )
 
 func main() {
-	quote := Utils.GetQuote()
-	fmt.Println(quote)
+	// quote := Utils.GetQuote()
+	// fmt.Println(quote)
 
 	// session := Database.DbConnect("localhost:8080/")
 	// Database.CreateTable(session)
@@ -21,6 +19,4 @@ func main() {
 	router.HandleFunc("/", API.HomeLink)
 	router.HandleFunc("/event", API.CreateQuote)
 	log.Fatal(http.ListenAndServe(":8080", router))
-	profile := Utils.GetProfile()
-	fmt.Println(profile)
 }
