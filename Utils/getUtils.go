@@ -2,7 +2,6 @@ package Utils
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"net/url"
@@ -53,6 +52,14 @@ type WholeProfile struct {
 	} `json:"profile"`
 }
 
+type Ticker struct {
+	Symbol				string `json:"symbol"`
+	Name				string `json:"name"`
+	Currency			string `json:"currency"`
+	StockExchange		string `json:"stockExchange"`
+	ExchangeShortName	string `json:"exchangeShortName"`
+}
+
 var quoteUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
@@ -63,6 +70,12 @@ var profileUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
 	Path:   "/api/v3/company/profile/",
+}
+
+var tickerUrl = url.URL{
+	Scheme: "https",
+	Host:	"financialmodelingprep.com",
+	Path:	"/api/v3/search?",
 }
 
 func GetQuote(symbol string) []Quote {
@@ -86,7 +99,7 @@ func GetQuote(symbol string) []Quote {
 	return data
 }
 
-func GetProfile(symbol string) {
+func GetProfile(symbol string) WholeProfile {
 	response, err := http.Get(profileUrl.String() + symbol)
 	if err != nil {
 		log.Fatal(err)
@@ -105,7 +118,28 @@ func GetProfile(symbol string) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(data)
+	return data
 
 	// return data
+}
+
+func GetTicker(query, limit, exchange string) Ticker {
+	response, err := http.Get(tickerUrl.String() + query + "&" + limit + "&" + exchange)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer response.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var data Ticker
+
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
 }

@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	mux "github.com/gorilla/mux"
 )
 
 func HomeLink(w http.ResponseWriter, r *http.Request) {
@@ -26,4 +26,18 @@ func CreateQuote(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 
 	json.NewEncoder(w).Encode(quote)
+}
+
+func CreateProfile(w http.ResponseWriter, r *http.Request) {
+	symbol := mux.Vars(r)["symbol"]
+	profile := Utils.GetProfile(symbol)
+	requestBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		fmt.Fprintf(w, "Kindly enter data with the event title and description only in order to update")
+	}
+
+	json.Unmarshal(requestBody, &profile)
+	w.WriteHeader(http.StatusCreated)
+
+	json.NewEncoder(w).Encode(profile)
 }
