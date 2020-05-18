@@ -1,9 +1,7 @@
 package main
 
 import (
-	"AlgoTrading/Utils"
 	"AlgoTrading/Server"
-	// "fmt"
 )
 
 func main() {
@@ -13,7 +11,8 @@ func main() {
 	// session := Database.DbConnect("localhost:8080/")
 	// Database.CreateTable(session)
 
-	Utils.GetTicker("PRAA", "10", "NASDAQ")
+	// ticker := Utils.GetTicker("PRAA", "10", "NASDAQ")
+	// fmt.Println(ticker)
 
 	// router := mux.NewRouter().StrictSlash(true)
 	// router.HandleFunc("/", API.HomeLink)
