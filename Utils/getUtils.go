@@ -92,31 +92,30 @@ type IncomeStatement struct {
 		OtherAssets						string	`json:"Other Assets"`
 		OtherLiabilities				string	`json:"Other Liabilities"`
 	}	`json:"financials"`
-
 }
 
-var quoteUrl = url.URL{
+var quoteUrl = url.URL {
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:   "/api/v3/quote/",
+	Path:	"/api/v3/quote/",
 }
 
-var profileUrl = url.URL{
+var profileUrl = url.URL {
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
 	Path:   "/api/v3/company/profile/",
 }
 
-var tickerUrl = url.URL{
+var tickerUrl = url.URL {
 	Scheme: "https",
 	Host:	"financialmodelingprep.com",
-	Path: "/api/v3/",
+	Path:	"/api/v3/",
 }
 
-var incomeUrl = url.URL{
-	Scheme: "https",
-	Host: "financialmodelingprep.com",
-	Path: "/api/v3/income-statement/",
+var incomeUrl = url.URL {
+	Scheme:	"https",
+	Host:	"financialmodelingprep.com",
+	Path:	"/api/v3/financials/income-statement/",
 }
 
 // Gets Quote from financialmodelprep.com
@@ -190,7 +189,70 @@ func GetTicker(query, limit, exchange string) []Ticker {
 
 // Series of functions for gettin Financial Statements from financialmodelingprep.com
 func GetIncomeStatement(symbol string) IncomeStatement {
-	response, err := http.Get(incomeUrl.String() + "symbol")
+	response, err := http.Get(incomeUrl.String() + symbol)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer response.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var data IncomeStatement
+
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
+}
+
+func GetQuarterlyIncomeStatement(symbol string) IncomeStatement {
+	response, err := http.Get(incomeUrl.String() + symbol + "?period=quarter")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer response.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var data IncomeStatement
+
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
+}
+
+func GetCsvIncomeStatement(symbol string) IncomeStatement {
+	response, err := http.Get(incomeUrl.String() + symbol + "?datatype=csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer response.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var data IncomeStatement
+
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
+}
+
+func GetQuarterlyCsvIncomeStatement(symbol string) IncomeStatement {
+	response, err := http.Get(incomeUrl.String() + symbol + "?datatype=csv&period=quarter")
 	if err != nil {
 		log.Fatal(err)
 	}
