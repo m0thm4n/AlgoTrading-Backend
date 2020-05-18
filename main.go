@@ -1,13 +1,23 @@
 package main
 
 import (
-	"AlgoTrading/Database"
-	"AlgoTrading/Utils"
+	"AlgoTrading/Server"
 )
 
 func main() {
-	quote := Utils.GetProfile()
+	// quote := Utils.GetQuote()
+	// fmt.Println(quote)
 
-	Database.DbConnect("localhost")
+	// session := Database.DbConnect("localhost:8080/")
+	// Database.CreateTable(session)
+
+	// ticker := Utils.GetTicker("PRAA", "10", "NASDAQ")
+	// fmt.Println(ticker)
+
+	// router := mux.NewRouter().StrictSlash(true)
+	// router.HandleFunc("/", API.HomeLink)
+	// router.HandleFunc("/api/quote/{symbol}", API.CreateQuote).Methods("GET")
+	// log.Fatal(http.ListenAndServe(":8080", router))
+
+	Server.Routes()
 }
-
