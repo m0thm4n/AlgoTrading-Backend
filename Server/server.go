@@ -1,8 +1,8 @@
 package Server
 
 import (
-	"AlgoTrading/API"
-	"AlgoTrading/Config"
+	"AlgoTrading-Backend/API"
+	"AlgoTrading-Backend/Config"
 	"fmt"
 	"log"
 	"net/http"
@@ -31,6 +31,7 @@ func Routes() {
 	router.HandleFunc("/api/financials/cash-flow-statement/quarterly/{symbol}", API.GetQuarterlyCashFlowStatement).Methods("GET")
 	router.HandleFunc("/api/financials/cash-flow-statement/csv/{symbol}", API.GetCsvCashFlowStatement).Methods("GET")
 	router.HandleFunc("/api/financials/cash-flow-statement/quarterly/csv/{symbol}", API.GetQuarterlyCsvCashFlowStatement).Methods("GET")
+	router.HandleFunc("/api/financial-ratios/{symbol}", API.GetFinancialRatios).Methods("GET")
 
 	fmt.Printf("Spinning up server on  %s:%s", host, port)
 	log.Fatal(http.ListenAndServe(host + ":" + port, router))

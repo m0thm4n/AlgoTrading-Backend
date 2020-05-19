@@ -1,7 +1,7 @@
 package main
 
 import (
-	"AlgoTrading/Server"
+	"AlgoTrading-Backend/Server"
 )
 
 func main() {
