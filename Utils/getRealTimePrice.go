@@ -7,22 +7,21 @@ import (
 	"net/url"
 )
 
-type SymbolsList struct {
-	SymbolsList []struct {
+type CompaniesPriceList struct {
+	StockList []struct {
 		Symbol		string	`json:"symbol"`
-		Name		string	`json:"name"`
 		Price		float64	`json:"price"`
-	} `json:"symbolsList"`
+	}	`json:"stockList"`
 }
 
-var symbolsListUrl = url.URL {
+var realTimeCompanyStockPrices = url.URL {
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:	"/api/v3/company/stock/list",
+	Path:	"/api/v3/stock/real-time-price/",
 }
 
-func GetSymbolsList(symbol string) SymbolsList {
-	response, err := http.Get(symbolsListUrl.String() + symbol)
+func GetStockPrices() CompaniesPriceList {
+	response, err := http.Get(realTimeCompanyStockPrices.String())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,7 +31,7 @@ func GetSymbolsList(symbol string) SymbolsList {
 		log.Fatal(err)
 	}
 
-	var data SymbolsList
+	var data CompaniesPriceList
 
 	err = json.NewDecoder(response.Body).Decode(&data)
 	if err != nil {
