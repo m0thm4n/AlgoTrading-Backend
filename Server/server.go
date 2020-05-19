@@ -62,8 +62,10 @@ func Routes() {
 		API.GetQuarterlyHistoricalDiscountedCashFlow).Methods("GET")
 	// Stock Symbols List
 	router.HandleFunc("/api/financials/stock/list", API.GetSymbolsList).Methods("GET")
-	// Real-time Stock Price
-	router.HandleFunc("/api/financials/real-time-stock-prices/", API.GetRealTimePrice).Methods("GET")
+	// All Real-time Stock Price
+	router.HandleFunc("/api/financials/real-time-stock-prices/", API.GetRealTimePrices).Methods("GET")
+	// Real-time Stock Price for Company
+	router.HandleFunc("/api/financials/real-time-stock-price/{symbol}", API.GetRealTimePriceForCompany).Methods("GET")
 
 	fmt.Printf("Spinning up server on  %s:%s", host, port)
 	log.Fatal(http.ListenAndServe(host + ":" + port, router))
