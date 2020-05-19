@@ -32,6 +32,10 @@ func Routes() {
 	router.HandleFunc("/api/financials/cash-flow-statement/csv/{symbol}", API.GetCsvCashFlowStatement).Methods("GET")
 	router.HandleFunc("/api/financials/cash-flow-statement/quarterly/csv/{symbol}", API.GetQuarterlyCsvCashFlowStatement).Methods("GET")
 	router.HandleFunc("/api/financial-ratios/{symbol}", API.GetFinancialRatios).Methods("GET")
+	router.HandleFunc("/api/financials/company-enterprise-value/{symbol}", API.GetCompanyEnterpriseValue).Methods("GET")
+	router.HandleFunc("/api/financials/company-enterprise-value/quarterly/{symbol}", API.GetQuarterlyCompanyEnterpriseValue).Methods("GET")
+	router.HandleFunc("/api/financials/company-key-metrics/{symbol}", API.GetCompanyEnterpriseValue).Methods("GET")
+	router.HandleFunc("/api/financials/company-company-key/quarterly/{symbol}", API.GetQuarterlyCompanyEnterpriseValue).Methods("GET")
 
 	fmt.Printf("Spinning up server on  %s:%s", host, port)
 	log.Fatal(http.ListenAndServe(host + ":" + port, router))
