@@ -26,7 +26,7 @@ type CashFlow struct {
 		NetCashFlowChangeInCash			string	`json:"Net cash flow / Change in cash"`
 		FreeCashFlow					string	`json:"Free Cash Flow"`
 		NetCashMarketcap				string	`json:"Net Cash/Marketcap"`
-	}
+	}	`json:"financials"`
 }
 
 var cashFlowUrl = url.URL{

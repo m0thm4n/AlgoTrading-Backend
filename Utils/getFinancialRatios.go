@@ -24,30 +24,30 @@ type FinancialRatios struct {
 			PriceSalesRatio					string	`json:"priceSalesRatio"`
 			DividendYield					string	`json:"dividendYield"`
 			PriceFairValue					string	`json:"priceFairValue"`
-		}
+		} `json:"investmentValuationRatios"`
 		ProfitabilityIndicatorRatios []struct {
-			NiPerEBT				string	`json:"niperEBT"`
-			EBTPerEBIT				string	`json:"ebtperEBIT"`
-			EbitPerRevenue			string	`json:"ebitperRevenue"`
-			GrossProfitRevenue		string	`json:"grossProfitRevenue"`
-			OperatingProfitMargin	string	`json:"operatingProfitMargin"`
-			PretaxProfitMargin		string	`json:"pretaxProfitMargin"`
-			NetProfitMargin			string	`json:"netProfitMargin"`
-			EffectiveTaxRate		string	`json:"effectiveTaxRate"`
-			ReturnOnAssets			string	`json:"returnOnAssets"`
-			ReturnOnEquity			string	`json:"returnOnEquity"`
-			ReturnOnCapitalEmployed	string	`json:"returnOnCapitalEmployed"`
-			NIPerEBT				string	`json:"nIperEBT"`
-			EBTPerEBITFR				string	`json:"eBTperEBIT"`
-			EBITPerRevenue			string	`json:"eBITperRevenue"`
-		}
+			NiPerEBT                string `json:"niperEBT"`
+			EBTPerEBIT              string `json:"ebtperEBIT"`
+			EbitPerRevenue          string `json:"ebitperRevenue"`
+			GrossProfitRevenue      string `json:"grossProfitRevenue"`
+			OperatingProfitMargin   string `json:"operatingProfitMargin"`
+			PretaxProfitMargin      string `json:"pretaxProfitMargin"`
+			NetProfitMargin         string `json:"netProfitMargin"`
+			EffectiveTaxRate        string `json:"effectiveTaxRate"`
+			ReturnOnAssets          string `json:"returnOnAssets"`
+			ReturnOnEquity          string `json:"returnOnEquity"`
+			ReturnOnCapitalEmployed string `json:"returnOnCapitalEmployed"`
+			NIPerEBT                string `json:"nIperEBT"`
+			EBTPerEBITFR            string `json:"eBTperEBIT"`
+			EBITPerRevenue          string `json:"eBITperRevenue"`
+		}	`json:"profitabilityIndicatorRatios"`
 		OperatingPerformanceRatios	[]struct {
 			ReceivablesTurnover		string	`json:"receivablesTurnover"`
 			PayablesTurnover		string	`json:"payablesTurnover"`
 			InventoryTurnover		string	`json:"inventoryTurnover"`
 			FixedAssetTurnover		string	`json:"fixedAssetTurnover"`
 			AssetTurnover			string	`json:"assetTurnover"`
-		}
+		}	`json:"operatingPerformanceRatios"`
 		LiquidityMeasurementRatios []struct {
 			CurrentRatio					string	`json:"currentRatio"`
 			QuickRatio						string	`json:"quickRatio"`
@@ -57,16 +57,16 @@ type FinancialRatios struct {
 			OperatingCycle					string	`json:"operatingCycle"`
 			DaysOfPayablesOutstanding		string	`json:"daysOfPayablesOutstanding"`
 			CashConversionCycle				string	`json:"cashConversionCycle"`
-		}
+		}	`json:"liquidityMeasurementRatios"`
 		DebtRatios []struct {
-			DebtRatio						string	`json:"debtRatio"`
-			DebtEquityRatio					string	`json:"debtEquityRatio"`
-			LongTermDebtToCapitalization	string	`json:"longtermDebtToCapitalization"`
-			TotalDebtToCapitalization		string	`json:"totalDebtToCapitalization"`
-			InterestCoverage				string	`json:"interestCoverage"`
-			CashFlowToDebtRatio				string	`json:"cashFlowToDebtRatio"`
-			CompanyEquityMultiplier			string	`json:"companyEquityMultiplier"`
-		}
+			DebtRatio                    string `json:"debtRatio"`
+			DebtEquityRatio              string `json:"debtEquityRatio"`
+			LongTermDebtToCapitalization string `json:"longtermDebtToCapitalization"`
+			TotalDebtToCapitalization    string `json:"totalDebtToCapitalization"`
+			InterestCoverage             string `json:"interestCoverage"`
+			CashFlowToDebtRatio          string `json:"cashFlowToDebtRatio"`
+			CompanyEquityMultiplier      string `json:"companyEquityMultiplier"`
+		}	`json:"debtRatios"`
 		CashFlowIndicatorRatios	[]struct {
 			OperatingCashFlowPerShare			string	`json:"operatingCashFlowPerShare"`
 			FreeCashFlowPerShare				string	`json:"freeCashFlowPerShare"`
@@ -80,8 +80,8 @@ type FinancialRatios struct {
 			CapitalExpenditureCoverageRatios	string	`json:"capitalExpenditureCoverageRatios"`
 			DividendPaidAndCapexCoverageRatios	string	`json:"dividendPaidAndCapexCoverageRatios"`
 			DividendPayoutRatio					string	`json:"dividendPayoutRatio"`
-		}
-	}
+		}	`json:"cashFlowIndicatorRatios"`
+	} `json:"ratios"`
 }
 
 var financialRatiosUrl = url.URL {

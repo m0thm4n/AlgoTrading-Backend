@@ -68,7 +68,7 @@ type CompanyKeyMetrics struct {
 		InventoryTurnover				string	`json:"Inventory Turnover"`
 		ROE								string	`json:"ROE"`
 		CapexPerShare					string	`json:"Capex per Share"`
-	}
+	}	`json:"metrics"`
 }
 
 var companyKeyMetricsUrl = url.URL {
