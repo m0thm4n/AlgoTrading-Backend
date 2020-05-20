@@ -66,9 +66,11 @@ func Routes() {
 	router.HandleFunc("/api/financials/real-time-stock-prices/", API.GetRealTimePrices).Methods("GET")
 	// Real-time Stock Price for Company
 	router.HandleFunc("/api/financials/real-time-stock-price/{symbol}", API.GetRealTimePriceForCompany).Methods("GET")
-	// Calls to Historical Stock Prices
+	// Calls to Historical Stock Prices / Daily Historical Stock Prices
 	router.HandleFunc("/api/financials/historical-stock-prices/{time}/{symbol}",
 		API.GetHistoricalStockPrice).Methods("GET")
+	router.HandleFunc("/api/financials/full-historical-stock-prices/{symbol}",
+		API.GetDailyHistoricalStockPrice).Methods("GET")
 
 	fmt.Printf("Spinning up server on  %s:%s", host, port)
 	log.Fatal(http.ListenAndServe(host + ":" + port, router))
