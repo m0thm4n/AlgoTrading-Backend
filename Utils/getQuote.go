@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -38,7 +39,10 @@ var quoteUrl = url.URL {
 
 // Gets Quote from financialmodelprep.com
 func GetQuote(symbol string) []Quote {
-	response, err := http.Get(quoteUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(quoteUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

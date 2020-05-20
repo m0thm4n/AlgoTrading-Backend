@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -54,7 +55,10 @@ var companyFinancialGrowth = url.URL {
 
 // Series of functions for getting Company Financial Growth from financialmodelingprep.com
 func GetCompanyFinancialGrowth(symbol string) CompanyFinancialGrowth {
-	response, err := http.Get(companyFinancialGrowth.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyFinancialGrowth.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -75,7 +79,10 @@ func GetCompanyFinancialGrowth(symbol string) CompanyFinancialGrowth {
 }
 
 func GetQuarterlyCompanyFinancialGrowth(symbol string) CompanyFinancialGrowth {
-	response, err := http.Get(companyFinancialGrowth.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyFinancialGrowth.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

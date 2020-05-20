@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -47,7 +48,10 @@ var dailyHistoricalStockPriceUrl = url.URL {
 }
 
 func GetHistoricalStockPrice(time, symbol string) []HistoricalStockPrice {
-	response, err := http.Get(historicalStockPriceUrl.String() + time + "min" + "/" + symbol + "?apikey=demo")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(historicalStockPriceUrl.String() + time + "min" + "/" + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -68,7 +72,10 @@ func GetHistoricalStockPrice(time, symbol string) []HistoricalStockPrice {
 }
 
 func GetDailyHistoricalStockPrice(symbol string) DailyHistoricalStockPrice {
-	response, err := http.Get(dailyHistoricalStockPriceUrl.String() + symbol + "?serietype=line&apikey=demo")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(dailyHistoricalStockPriceUrl.String() + symbol + "?serietype=line&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

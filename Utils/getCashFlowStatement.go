@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -37,7 +38,10 @@ var cashFlowUrl = url.URL{
 
 // Series of functions for getting Financial Statements from financialmodelingprep.com
 func GetCashFlowStatement(symbol string) CashFlow {
-	response, err := http.Get(cashFlowUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(cashFlowUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,7 +62,10 @@ func GetCashFlowStatement(symbol string) CashFlow {
 }
 
 func GetQuarterlyCashFlowStatement(symbol string) CashFlow {
-	response, err := http.Get(cashFlowUrl.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(cashFlowUrl.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -79,7 +86,10 @@ func GetQuarterlyCashFlowStatement(symbol string) CashFlow {
 }
 
 func GetCsvCashFlowStatement(symbol string) CashFlow {
-	response, err := http.Get(cashFlowUrl.String() + symbol + "?datatype=csv")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(cashFlowUrl.String() + symbol + "?datatype=csv&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -100,7 +110,10 @@ func GetCsvCashFlowStatement(symbol string) CashFlow {
 }
 
 func GetQuarterlyCsvCashFlowStatement(symbol string) CashFlow {
-	response, err := http.Get(cashFlowUrl.String() + symbol + "?datatype=csv&period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(cashFlowUrl.String() + symbol + "?datatype=csv&period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

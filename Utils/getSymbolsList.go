@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -22,7 +23,10 @@ var symbolsListUrl = url.URL {
 }
 
 func GetSymbolsList(symbol string) SymbolsList {
-	response, err := http.Get(symbolsListUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(symbolsListUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

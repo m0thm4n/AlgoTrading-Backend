@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -23,7 +24,10 @@ var tickerUrl = url.URL {
 
 // Get ticker from financialmodelingprep.com
 func GetTicker(query, limit, exchange string) []Ticker {
-	response, err := http.Get(tickerUrl.String() + "search?query=" + query + "&" + "limit=" + limit + "&" + "exchange=" + exchange)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(tickerUrl.String() + "search?query=" + query + "&" + "limit=" + limit + "&" + "exchange=" + exchange + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

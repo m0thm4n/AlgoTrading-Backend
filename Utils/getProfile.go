@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -37,7 +38,10 @@ var profileUrl = url.URL {
 
 // Gets profile from financialmodelingprep.com
 func GetProfile(symbol string) WholeProfile {
-	response, err := http.Get(profileUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(profileUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

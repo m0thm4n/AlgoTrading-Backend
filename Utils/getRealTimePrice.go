@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -32,7 +33,10 @@ var realTimeCompanyStockPriceForCompany = url.URL {
 }
 
 func GetStockPrices() CompaniesPriceList {
-	response, err := http.Get(realTimeCompanyStockPrices.String())
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(realTimeCompanyStockPrices.String() + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,7 +57,10 @@ func GetStockPrices() CompaniesPriceList {
 }
 
 func GetStockPriceForCompany(symbol string) CompanyPrice {
-	response, err := http.Get(realTimeCompanyStockPriceForCompany.String())
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(realTimeCompanyStockPriceForCompany.String() + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

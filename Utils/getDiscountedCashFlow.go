@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -23,7 +24,10 @@ var discountedCashFlow = url.URL {
 
 // Series of functions for getting Discounted Cash Flow and Historical Discounted Cash Flow from financialmodelingprep.com
 func GetDiscountedCashFlow(symbol string) DiscountedCashFlow {
-	response, err := http.Get(discountedCashFlow.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(discountedCashFlow.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

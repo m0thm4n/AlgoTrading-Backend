@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -79,7 +80,10 @@ var companyKeyMetricsUrl = url.URL {
 
 // Series of functions for getting Company Enterprise Value from financialmodelingprep.com
 func GetCompanyKeyMetrics(symbol string) CompanyKeyMetrics {
-	response, err := http.Get(companyKeyMetricsUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyKeyMetricsUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -100,7 +104,10 @@ func GetCompanyKeyMetrics(symbol string) CompanyKeyMetrics {
 }
 
 func GetQuarterlyCompanyKeyMetrics(symbol string) CompanyKeyMetrics {
-	response, err := http.Get(companyKeyMetricsUrl.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyKeyMetricsUrl.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

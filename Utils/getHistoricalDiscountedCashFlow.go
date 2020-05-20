@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -22,7 +23,10 @@ var historicalDiscountedCashFlow = url.URL {
 }
 
 func GetHistoricalDiscountedCashFlow(symbol string) HistoricalDiscountedCashFlow {
-	response, err := http.Get(historicalDiscountedCashFlow.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(historicalDiscountedCashFlow.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -43,7 +47,10 @@ func GetHistoricalDiscountedCashFlow(symbol string) HistoricalDiscountedCashFlow
 }
 
 func GetQuarterlyHistoricalDiscountedCashFlow(symbol string) HistoricalDiscountedCashFlow {
-	response, err := http.Get(historicalDiscountedCashFlow.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(historicalDiscountedCashFlow.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
