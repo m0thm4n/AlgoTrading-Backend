@@ -23,7 +23,7 @@ var majorIndexesUrl = url.URL{
 	Path:	"/api/v3/quotes/",
 }
 
-func GetMajorIndexes() MajorIndexes {
+func GetMajorIndexes() []MajorIndexes {
 	config := Config.LoadConfiguration("config.json")
 	key := config.Key
 
@@ -37,7 +37,7 @@ func GetMajorIndexes() MajorIndexes {
 		log.Fatal(err)
 	}
 
-	var data MajorIndexes
+	var data []MajorIndexes
 
 	err = json.NewDecoder(response.Body).Decode(&data)
 	if err != nil {
