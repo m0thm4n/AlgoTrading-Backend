@@ -68,7 +68,9 @@ func Routes() {
 	router.HandleFunc("/api/financials/real-time-stock-price/{symbol}", API.GetRealTimePriceForCompany).Methods("GET")
 	// Calls to Historical Stock Prices / Daily Historical Stock Prices
 	router.HandleFunc("/api/financials/historical-stock-prices/{time}/{symbol}",
-		API.GetHistoricalStockPrice).Methods("GET")
+		API.GetHistoricalStockPriceByMinute).Methods("GET")
+	router.HandleFunc("/api/financials/historical-stock-prices-hour/{symbol}",
+		API.GetHistoricalStockPriceByHour).Methods("GET")
 	router.HandleFunc("/api/financials/full-historical-stock-prices/{symbol}",
 		API.GetDailyHistoricalStockPrice).Methods("GET")
 

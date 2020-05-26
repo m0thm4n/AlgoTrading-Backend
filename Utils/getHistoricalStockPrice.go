@@ -47,11 +47,35 @@ var dailyHistoricalStockPriceUrl = url.URL {
 	Path:	"/api/v3/historical-price-full/",
 }
 
-func GetHistoricalStockPrice(time, symbol string) []HistoricalStockPrice {
+func GetHistoricalStockPriceByMinute(time, symbol string) []HistoricalStockPrice {
 	config := Config.LoadConfiguration("config.json")
 	key := config.Key
 
 	response, err := http.Get(historicalStockPriceUrl.String() + time + "min" + "/" + symbol + "?apikey=" + key)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	defer response.Body.Close()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var data []HistoricalStockPrice
+
+	err = json.NewDecoder(response.Body).Decode(&data)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
+}
+
+func GetHistoricalStockPriceByHour(symbol string) []HistoricalStockPrice {
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(historicalStockPriceUrl.String() + "1hour" + "/" + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
