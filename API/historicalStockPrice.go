@@ -27,9 +27,8 @@ func GetHistoricalStockPriceByMinute(w http.ResponseWriter, r *http.Request) {
 
 
 func GetHistoricalStockPriceByHour(w http.ResponseWriter, r *http.Request) {
-	time := mux.Vars(r)["time"]
 	symbol := mux.Vars(r)["symbol"]
-	historicalStockPrice := Utils.GetHistoricalStockPriceByHour(time, symbol)
+	historicalStockPrice := Utils.GetHistoricalStockPriceByHour(symbol)
 	requestBody, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		fmt.Fprintf(w, "Kindly enter data with the event title and description only in order to update")

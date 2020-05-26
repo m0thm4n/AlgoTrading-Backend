@@ -73,6 +73,8 @@ func Routes() {
 		API.GetHistoricalStockPriceByHour).Methods("GET")
 	router.HandleFunc("/api/financials/full-historical-stock-prices/{symbol}",
 		API.GetDailyHistoricalStockPrice).Methods("GET")
+	router.HandleFunc("/api/financials/major-indexes/",
+		API.GetMajorIndexes).Methods("GET")
 
 	fmt.Printf("Spinning up server on  %s:%s", host, port)
 	log.Fatal(http.ListenAndServe(host + ":" + port, router))
