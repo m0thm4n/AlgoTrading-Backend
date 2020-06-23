@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"AlgoTrading-Backend/Config"
 )
 
 type Quote struct {
@@ -38,7 +39,10 @@ var quoteUrl = url.URL {
 
 // Gets Quote from financialmodelprep.com
 func GetQuote(symbol string) []Quote {
-	response, err := http.Get(quoteUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(quoteUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
