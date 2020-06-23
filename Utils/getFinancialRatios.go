@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -92,7 +93,10 @@ var financialRatiosUrl = url.URL {
 
 // Gets profile from financialmodelingprep.com
 func GetFinancialRatios(symbol string) FinancialRatios {
-	response, err := http.Get(financialRatiosUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(financialRatiosUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

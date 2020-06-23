@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"

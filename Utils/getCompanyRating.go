@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -50,7 +51,10 @@ var companyRatingUrl = url.URL {
 
 // Gets Company Rating from financialmodelingprep.com
 func GetCompanyRating(symbol string) CompanyRating {
-	response, err := http.Get(companyRatingUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyRatingUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

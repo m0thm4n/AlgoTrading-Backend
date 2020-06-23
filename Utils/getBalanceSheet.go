@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -49,7 +50,10 @@ var balanceSheetUrl = url.URL {
 
 // Series of functions for getting Financial Statements from financialmodelingprep.com
 func GetBalanceSheet(symbol string) BalanceSheet {
-	response, err := http.Get(balanceSheetUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,7 +74,10 @@ func GetBalanceSheet(symbol string) BalanceSheet {
 }
 
 func GetQuarterlyBalanceSheet(symbol string) BalanceSheet {
-	response, err := http.Get(balanceSheetUrl.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -91,7 +98,10 @@ func GetQuarterlyBalanceSheet(symbol string) BalanceSheet {
 }
 
 func GetCsvBalanceSheet(symbol string) BalanceSheet {
-	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -112,7 +122,10 @@ func GetCsvBalanceSheet(symbol string) BalanceSheet {
 }
 
 func GetQuarterlyCsvBalanceSheet(symbol string) BalanceSheet {
-	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

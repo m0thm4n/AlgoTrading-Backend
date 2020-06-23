@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	fmt.Println("Welcome to AlgoTrading")
 	// quote := Utils.GetQuote()
 	// fmt.Println(quote)
 

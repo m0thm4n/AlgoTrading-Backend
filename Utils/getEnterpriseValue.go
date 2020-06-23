@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -28,7 +29,10 @@ var companyEnterpriseValue = url.URL {
 
 // Series of functions for getting Company Enterprise Value from financialmodelingprep.com
 func GetCompanyEnterpriseValue(symbol string) CompanyEnterpriseValue {
-	response, err := http.Get(companyEnterpriseValue.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyEnterpriseValue.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -49,7 +53,10 @@ func GetCompanyEnterpriseValue(symbol string) CompanyEnterpriseValue {
 }
 
 func GetQuarterlyCompanyEnterpriseValue(symbol string) CompanyEnterpriseValue {
-	response, err := http.Get(companyEnterpriseValue.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(companyEnterpriseValue.String() + symbol + "?period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}

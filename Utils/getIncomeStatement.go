@@ -1,6 +1,7 @@
 package Utils
 
 import (
+	"AlgoTrading-Backend/Config"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -52,7 +53,10 @@ var incomeUrl = url.URL{
 }
 
 func GetIncomeStatement(symbol string) IncomeStatement {
-	response, err := http.Get(incomeUrl.String() + symbol)
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(incomeUrl.String() + symbol + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -73,7 +77,10 @@ func GetIncomeStatement(symbol string) IncomeStatement {
 }
 
 func GetQuarterlyIncomeStatement(symbol string) IncomeStatement {
-	response, err := http.Get(incomeUrl.String() + symbol + "?period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(incomeUrl.String() + symbol + "?period=quarter" + "&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -94,7 +101,10 @@ func GetQuarterlyIncomeStatement(symbol string) IncomeStatement {
 }
 
 func GetCsvIncomeStatement(symbol string) IncomeStatement {
-	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -115,7 +125,10 @@ func GetCsvIncomeStatement(symbol string) IncomeStatement {
 }
 
 func GetQuarterlyCsvIncomeStatement(symbol string) IncomeStatement {
-	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&period=quarter")
+	config := Config.LoadConfiguration("config.json")
+	key := config.Key
+
+	response, err := http.Get(balanceSheetUrl.String() + symbol + "?datatype=csv&period=quarter&apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
