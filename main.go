@@ -1,11 +1,12 @@
 package main
 
 import (
-	"AlgoTrading/Server"
+	"AlgoTrading-Backend/Server"
 	"fmt"
 )
 
 func main() {
+	fmt.Println("Welcome to AlgoTrading")
 	// quote := Utils.GetQuote()
 	// fmt.Println(quote)
 
