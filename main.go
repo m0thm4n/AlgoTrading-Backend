@@ -20,6 +20,6 @@ func main() {
 	// router.HandleFunc("/", API.HomeLink)
 	// router.HandleFunc("/api/quote/{symbol}", API.CreateQuote).Methods("GET")
 	// log.Fatal(http.ListenAndServe(":8080", router))
-
+	fmt.Println("Welcome to AlgoTrading.")
 	Server.Routes()
 }
