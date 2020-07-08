@@ -17,7 +17,7 @@ type MajorIndexes struct {
 	}	`json:"majorIndexesList"`
 }
 
-type MajoreIndexesQuote struct {
+type MajorIndexesQuote struct {
 	Symbol					string	`json:"symbol"`
 	Name					string	`json:"name"`
 	Price					float64	`json:"price"`
@@ -29,7 +29,7 @@ type MajoreIndexesQuote struct {
 	YearLow					float64	`json:"yearLow"`
 	PriceAvg50				float64	`json:"priceAvg50"`
 	PriceAvg200				float64	`json:"priceAvg200"`
-	Volume					int32	`json:"volume"`
+	Volume					int64	`json:"volume"`
 	AvgVolume				int64	`json:"avgVolume"`
 	Exchange				string	`json:"exchange"`
 	Open					float64	`json:"open"`
@@ -40,16 +40,16 @@ type MajoreIndexesQuote struct {
 var majorIndexesUrl = url.URL{
 	Scheme: "https",
 	Host:	"financialmodelingprep.com",
-	Path:	"/api/v3/major-indexes",
+	Path:	"/api/v3/quotes/index",
 }
 
 var majorIndexesQuotesUrl = url.URL {
 	Scheme: "https",
 	Host:	"financialmodelingprep.com",
-	Path:	"/api/v3/quotes/",
+	Path:	"/api/v3/%5EGSPC/",
 }
 
-func GetMajorIndexes() MajorIndexes {
+func GetMajorIndexes() []MajorIndexesQuote {
 	config := Config.LoadConfiguration("config.json")
 	key := config.Key
 
@@ -63,7 +63,7 @@ func GetMajorIndexes() MajorIndexes {
 		log.Fatal(err)
 	}
 
-	var data MajorIndexes
+	var data []MajorIndexesQuote
 
 	err = json.NewDecoder(response.Body).Decode(&data)
 	if err != nil {
