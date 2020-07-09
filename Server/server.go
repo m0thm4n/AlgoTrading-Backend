@@ -2,18 +2,18 @@ package Server
 
 import (
 	"AlgoTrading-Backend/API"
-	"AlgoTrading-Backend/Config"
-	"fmt"
+	//"AlgoTrading-Backend/Config"
+	//"fmt"
 	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
 )
 
-func Routes() {
-	config := Config.LoadConfiguration("config.json")
-	host := config.Host
-	port := config.Port
+func Routes(port string) {
+	//config := Config.LoadConfiguration("config.json")
+	//host := config.Host
+	//port := config.Port
 
 	router := mux.NewRouter().StrictSlash(true)
 	// Quote
@@ -76,6 +76,6 @@ func Routes() {
 	router.HandleFunc("/api/financials/major-indexes/",
 		API.GetMajorIndexes).Methods("GET")
 
-	fmt.Printf("Spinning up server on  %s:%s", host, port)
-	log.Fatal(http.ListenAndServe(host + ":" + port, router))
+	//fmt.Printf("Spinning up server on  %s:%s", host, port)
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }
