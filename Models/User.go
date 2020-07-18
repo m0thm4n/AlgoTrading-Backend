@@ -99,7 +99,7 @@ func (user *User) SaveUser(db *gorm.DB) (*User, error) {
 
 	var err error
 
-	err = *db.Debug().Create(&user).Error
+	err = db.Debug().Create(&user).Error
 	if err != nil {
 		return &User{}, err
 	}

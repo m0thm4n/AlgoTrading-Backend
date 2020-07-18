@@ -1,7 +1,7 @@
 package API
 
 import (
-	"AlgoTrading-Backend/Utils"
+	"github.com/m0thm4n/AlgoTrading-Backend/Utils"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"

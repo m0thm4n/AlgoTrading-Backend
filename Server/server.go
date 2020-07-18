@@ -1,8 +1,8 @@
 package Server
 
 import (
-	"AlgoTrading-Backend/API"
-	"AlgoTrading-Backend/Config"
+	"github.com/m0thm4n/AlgoTrading-Backend/API"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"fmt"
 	"log"
 	"net/http"

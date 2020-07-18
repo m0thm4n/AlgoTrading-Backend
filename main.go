@@ -1,7 +1,7 @@
 package main
 
 import (
-	"AlgoTrading-Backend/Server"
+	"github.com/m0thm4n/AlgoTrading-Backend/Server"
 	"fmt"
 )
 
