@@ -1,8 +1,8 @@
 package Utils
 
 import (
-	"AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
@@ -10,16 +10,16 @@ import (
 
 type SymbolsList struct {
 	SymbolsList []struct {
-		Symbol		string	`json:"symbol"`
-		Name		string	`json:"name"`
-		Price		float64	`json:"price"`
+		Symbol string  `json:"symbol"`
+		Name   string  `json:"name"`
+		Price  float64 `json:"price"`
 	} `json:"symbolsList"`
 }
 
-var symbolsListUrl = url.URL {
+var symbolsListUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:	"/api/v3/company/stock/list",
+	Path:   "/api/v3/company/stock/list",
 }
 
 func GetSymbolsList(symbol string) SymbolsList {

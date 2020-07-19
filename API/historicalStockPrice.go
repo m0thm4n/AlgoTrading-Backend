@@ -1,9 +1,9 @@
 package API
 
 import (
-	"AlgoTrading-Backend/Utils"
 	"encoding/json"
 	"fmt"
+	"github.com/m0thm4n/AlgoTrading-Backend/Utils"
 	"io/ioutil"
 	"net/http"
 
@@ -24,7 +24,6 @@ func GetHistoricalStockPriceByMinute(w http.ResponseWriter, r *http.Request) {
 
 	json.NewEncoder(w).Encode(historicalStockPrice)
 }
-
 
 func GetHistoricalStockPriceByHour(w http.ResponseWriter, r *http.Request) {
 	symbol := mux.Vars(r)["symbol"]
