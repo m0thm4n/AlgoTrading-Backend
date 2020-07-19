@@ -14,6 +14,7 @@ type Config struct {
 	Host	string	`json:"host"`
 	Port	string	`json:"port"`
 	Key		string	`json:"key"`
+	AppKey 	string	`json:"app_key"`
 }
 
 func LoadConfiguration(file string) Config {

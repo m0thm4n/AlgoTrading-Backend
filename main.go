@@ -28,11 +28,11 @@ func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8081"
-		log.Printf("Defaulting to port %s", port)
+		log.Printf("Defaulting to port %s\n", port)
 	}
 
 	log.Printf("Listening on port %s", port)
-	fmt.Printf("Spinning up server on port %s", port)
+	fmt.Printf("Spinning up server on port %s\n", port)
 	fmt.Println("Welcome to AlgoTrading.")
 	Server.Routes(port)
 	appengine.Main() // Start the server
