@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"strings"
 )
 
 type Quote struct {
@@ -42,7 +43,7 @@ func GetQuote(symbol string) []Quote {
 	config := Config.LoadConfiguration("config.json")
 	key := config.Key
 
-	response, err := http.Get(quoteUrl.String() + symbol + "?apikey=" + key)
+	response, err := http.Get(quoteUrl.String() + strings.ToUpper(symbol) + "?apikey=" + key)
 	if err != nil {
 		log.Fatal(err)
 	}
