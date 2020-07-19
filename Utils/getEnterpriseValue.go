@@ -1,27 +1,27 @@
 package Utils
 
 import (
-	"AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
 )
 
 type CompanyEnterpriseValue struct {
-	Symbol	string	`json:"symbol"`
+	Symbol           string `json:"symbol"`
 	EnterpriseValues []struct {
-		 Date						string	`json:"date"`
-		 StockPrice					string	`json:"Stock Price"`
-		 NumberOfShares				string	`json:"Number of Shares"`
-		 MarketCapitalization		float64	`json:"Market Capitalization"`
-		 CashAndCashEquivalents		float64	`json:"- Cash & Cash Equivalents"`
-		 TotalDebt					float64	`json:"+ Total Debt"`
-		 EnterpriseValue			float64	`json:"Enterprise Value"`
+		Date                   string  `json:"date"`
+		StockPrice             string  `json:"Stock Price"`
+		NumberOfShares         string  `json:"Number of Shares"`
+		MarketCapitalization   float64 `json:"Market Capitalization"`
+		CashAndCashEquivalents float64 `json:"- Cash & Cash Equivalents"`
+		TotalDebt              float64 `json:"+ Total Debt"`
+		EnterpriseValue        float64 `json:"Enterprise Value"`
 	} `json:"enterpriseValues"`
 }
 
-var companyEnterpriseValue = url.URL {
+var companyEnterpriseValue = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
 	Path:   "/api/v3/enterprise-value/",

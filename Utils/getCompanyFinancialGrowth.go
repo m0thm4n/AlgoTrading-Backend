@@ -1,8 +1,8 @@
 package Utils
 
 import (
-	"AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
@@ -44,13 +44,13 @@ type CompanyFinancialGrowth struct {
 		DebtGrowth                                string `json:"Debt Growth"`
 		RAndDExpenseGrowth                        string `json:"R&D Expense Growth"`
 		SGnAExpensesGrowth                        string `json:"SG&A Expenses Growth"`
-	}	`json:"growth"`
+	} `json:"growth"`
 }
 
-var companyFinancialGrowth = url.URL {
-	Scheme:	"https",
-	Host:	"financialmodelingprep.com",
-	Path:	"/api/v3/financials/financial-statement-growth/",
+var companyFinancialGrowth = url.URL{
+	Scheme: "https",
+	Host:   "financialmodelingprep.com",
+	Path:   "/api/v3/financials/financial-statement-growth/",
 }
 
 // Series of functions for getting Company Financial Growth from financialmodelingprep.com

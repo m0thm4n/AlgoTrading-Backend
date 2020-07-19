@@ -1,25 +1,25 @@
 package Utils
 
 import (
-	"AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
 )
 
 type Ticker struct {
-	Symbol				string `json:"symbol"`
-	Name				string `json:"name"`
-	Currency			string `json:"currency"`
-	StockExchange		string `json:"stockExchange"`
-	ExchangeShortName	string `json:"exchangeShortName"`
+	Symbol            string `json:"symbol"`
+	Name              string `json:"name"`
+	Currency          string `json:"currency"`
+	StockExchange     string `json:"stockExchange"`
+	ExchangeShortName string `json:"exchangeShortName"`
 }
 
-var tickerUrl = url.URL {
+var tickerUrl = url.URL{
 	Scheme: "https",
-	Host:	"financialmodelingprep.com",
-	Path:	"/api/v3/",
+	Host:   "financialmodelingprep.com",
+	Path:   "/api/v3/",
 }
 
 // Get ticker from financialmodelingprep.com
