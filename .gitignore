@@ -10,8 +10,13 @@
 *.so
 *.dylib
 config.json
+<<<<<<< HEAD
 .env
 *.env
+=======
+*.env
+.env
+>>>>>>> 252dd59fda4cc462e4fbbf9acb0aac61dc85b6da
 
 # Test binary, built with `go test -c`
 *.test
