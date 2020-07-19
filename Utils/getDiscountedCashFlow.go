@@ -1,26 +1,25 @@
 package Utils
 
 import (
-	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
 )
 
 type DiscountedCashFlow struct {
-	Symbol		string	`json:"symbol"`
-	Date		string	`json:"date"`
-	DFC			float64	`json:"dfc"`
-	StockPrice	float64	`json:"Stock Price"`
+	Symbol     string  `json:"symbol"`
+	Date       string  `json:"date"`
+	DFC        float64 `json:"dfc"`
+	StockPrice float64 `json:"Stock Price"`
 }
 
-var discountedCashFlow = url.URL {
+var discountedCashFlow = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
 	Path:   "/api/v3/company/discounted-cash-flow/",
 }
-
 
 // Series of functions for getting Discounted Cash Flow and Historical Discounted Cash Flow from financialmodelingprep.com
 func GetDiscountedCashFlow(symbol string) DiscountedCashFlow {

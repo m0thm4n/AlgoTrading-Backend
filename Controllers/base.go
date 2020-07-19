@@ -4,21 +4,20 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
-	"github.com/m0thm4n/fullstack/api/models"
+	"github.com/m0thm4n/AlgoTrading-Backend/Models"
 	"log"
 	"net/http"
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"    //mysql database driver
 	_ "github.com/jinzhu/gorm/dialects/postgres" //postgres database driver
-
 )
 
 type Server struct {
-	DB		*gorm.DB
-	Router	*mux.Router
+	DB     *gorm.DB
+	Router *mux.Router
 }
 
-func (server *Server) Initialize(DbDriver, DbUser, DbUser, DbPassword, DbPort, DbHost, DbName string) {
+func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
 
 	var err error
 
@@ -32,11 +31,22 @@ func (server *Server) Initialize(DbDriver, DbUser, DbUser, DbPassword, DbPort, D
 		}
 	}
 
-	server.DB.Debug().AutoMigrate(&models.User{}) // Database migration
+	if DbDriver == "postgres" {
+		DBURL := fmt.Sprintf("host=%s port=%s user=%s sslmode=disable password=%s", DbHost, DbPort, DbUser, DbName, DbPassword)
+		server.DB, err = gorm.Open(DbDriver, DBURL)
+		if err != nil {
+			fmt.Printf("Cannot connect to %s database", DbDriver)
+			log.Fatal("This is the error: ", err)
+		} else {
+			fmt.Println("We are connected to the %s database", DbDriver)
+		}
+	}
+
+	server.DB.Debug().AutoMigrate(&Models.User{}) // Database migration
 
 	server.Router = mux.NewRouter()
 
-	server.initializeRoutes
+	server.initializeRoutes()
 }
 
 func (server *Server) Run(addr string) {

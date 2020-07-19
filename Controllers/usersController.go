@@ -7,13 +7,12 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
-	"syscall"
 
 	"github.com/gorilla/mux"
-	"github.com/m0thm4n/AlgoTrading-Backend/auth"
 	"github.com/m0thm4n/AlgoTrading-Backend/Models"
 	"github.com/m0thm4n/AlgoTrading-Backend/Responses"
 	"github.com/m0thm4n/AlgoTrading-Backend/Utils/formaterror"
+	"github.com/m0thm4n/AlgoTrading-Backend/Auth"
 )
 
 func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +65,7 @@ func (server *Server) GetUser(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 
-	uid, err := strcov.ParseUint(vars["id"], 10, 32)
+	uid, err := strconv.ParseUint(vars["id"], 10, 32)
 	if err != nil {
 		Responses.ERROR(w, http.StatusBadRequest, err)
 		return
@@ -106,7 +105,7 @@ func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tokenID, err := auth.ExtractTokenID(r)
+	tokenID, err := Auth.ExtractTokenID(r)
 	if err != nil {
 		Responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 		return
@@ -147,7 +146,7 @@ func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tokenID, err := auth.ExtractTokenID(r)
+	tokenID, err := Auth.ExtractTokenID(r)
 	if err != nil {
 		Responses.ERROR(w, http.StatusUnauthorized, errors.New("Unauthorized"))
 		return

@@ -12,12 +12,12 @@ import (
 )
 
 type User struct {
-	ID			uint32		`gorm:"primary_key;auto_increment" json:"id"`
-	Name		string		`gorm:"size:255;not null; unique" json:"name"`
-	Email		string		`gorm:"size:100;not null; unique" json:"email"`
-	Password	string		`gorm:"size:100;not null;" json:"password"`
-	CreatedAt	time.Time	`gorm:"default:CURRENT_TIMESTAMP" json:"create_at"`
-	UpdatedAt	time.Time	`gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
+	ID        uint32    `gorm:"primary_key;auto_increment" json:"id"`
+	Name      string    `gorm:"size:255;not null; unique" json:"name"`
+	Email     string    `gorm:"size:100;not null; unique" json:"email"`
+	Password  string    `gorm:"size:100;not null;" json:"password"`
+	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"create_at"`
+	UpdatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
 func Hash(password string) ([]byte, error) {
@@ -117,7 +117,7 @@ func (user *User) FindAllUser(db *gorm.DB) (*[]User, error) {
 		return &[]User{}, err
 	}
 
-	return &users,err
+	return &users, err
 }
 
 func (user *User) FindUserByID(db *gorm.DB, uid uint32) (*User, error) {
@@ -146,10 +146,10 @@ func (user *User) UpdateAUser(db *gorm.DB, uid uint32) (*User, error) {
 
 	db = db.Debug().Model(&User{}).Where("id = ?", uid).Take(&User{}).UpdateColumns(
 		map[string]interface{}{
-			"password":		user.Password,
-			"name":			user.Name,
-			"email":		user.Email,
-			"update_at":	time.Now(),
+			"password":  user.Password,
+			"name":      user.Name,
+			"email":     user.Email,
+			"update_at": time.Now(),
 		})
 	if db.Error != nil {
 		return &User{}, db.Error
@@ -167,4 +167,3 @@ func (user *User) DeleteAUser(db *gorm.DB, uid uint32) (int64, error) {
 
 	return db.RowsAffected, nil
 }
-

@@ -1,49 +1,49 @@
 package Utils
 
 import (
-	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
 )
 
 type CompanyRating struct {
-	Symbol	string	`json:"symbol"`
-	Rating	[]struct {
-		Score				int		`json:"score"`
-		Rating				string	`json:"rating"`
-		Recommendation		string	`json:"recommendation"`
+	Symbol string `json:"symbol"`
+	Rating []struct {
+		Score          int    `json:"score"`
+		Rating         string `json:"rating"`
+		Recommendation string `json:"recommendation"`
 	} `json:"rating"`
-	RatingDetails	[]struct {
+	RatingDetails []struct {
 		PB []struct {
 			Score          int    `json:"score"`
 			Recommendation string `json:"recommendation"`
 		} `json:"P/B"`
 		ROA []struct {
-			Score			int    `json:"score"`
-			Recommendation	string `json:"recommendation"`
+			Score          int    `json:"score"`
+			Recommendation string `json:"recommendation"`
 		} `json:"ROA"`
 		DCF []struct {
-			Score			int		`json:"score"`
-			Recommendation	string	`json:"recommendation"`
+			Score          int    `json:"score"`
+			Recommendation string `json:"recommendation"`
 		} `json:"DCF"`
-		PE	[]struct {
-			Score			int		`json:"score"`
-			Recommendation	string	`json:"recommendation"`
+		PE []struct {
+			Score          int    `json:"score"`
+			Recommendation string `json:"recommendation"`
 		} `json:"P/E"`
-		ROE	[]struct {
-			Score			int		`json:"score"`
-			Recommendation	string	`json:"recommendation"`
+		ROE []struct {
+			Score          int    `json:"score"`
+			Recommendation string `json:"recommendation"`
 		} `json:"ROE"`
-		DE	[]struct {
-			Score			int		`json:"score"`
-			Recommendation	string	`json:"recommendation"`
+		DE []struct {
+			Score          int    `json:"score"`
+			Recommendation string `json:"recommendation"`
 		} `json:"D/E"`
 	} `json:"ratingDetails"`
 }
 
-var companyRatingUrl = url.URL {
+var companyRatingUrl = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
 	Path:   "/api/v3/company/rating/",

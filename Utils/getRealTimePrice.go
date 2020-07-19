@@ -1,8 +1,8 @@
 package Utils
 
 import (
-	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"encoding/json"
+	"github.com/m0thm4n/AlgoTrading-Backend/Config"
 	"log"
 	"net/http"
 	"net/url"
@@ -10,26 +10,26 @@ import (
 
 type CompaniesPriceList struct {
 	StockList []struct {
-		Symbol		string	`json:"symbol"`
-		Price		float64	`json:"price"`
-	}	`json:"stockList"`
+		Symbol string  `json:"symbol"`
+		Price  float64 `json:"price"`
+	} `json:"stockList"`
 }
 
 type CompanyPrice struct {
-	Symbol		string	`json:"symbol"`
-	Price		float64	`json:"price"`
+	Symbol string  `json:"symbol"`
+	Price  float64 `json:"price"`
 }
 
-var realTimeCompanyStockPrices = url.URL {
+var realTimeCompanyStockPrices = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:	"/api/v3/stock/real-time-price/",
+	Path:   "/api/v3/stock/real-time-price/",
 }
 
-var realTimeCompanyStockPriceForCompany = url.URL {
+var realTimeCompanyStockPriceForCompany = url.URL{
 	Scheme: "https",
 	Host:   "financialmodelingprep.com",
-	Path:	"/api/v3/stock/real-time-price/AAPL",
+	Path:   "/api/v3/stock/real-time-price/AAPL",
 }
 
 func GetStockPrices() CompaniesPriceList {
