@@ -5,6 +5,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/m0thm4n/AlgoTrading-Backend/Controllers"
 	"github.com/m0thm4n/AlgoTrading-Backend/Seed"
+	"google.golang.org/appengine"
 	"log"
 	"os"
 )
@@ -28,5 +29,15 @@ func Run() {
 
 	Seed.Load(server.DB)
 
-	server.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8081"
+		log.Printf("Defaulting to port %s", port)
+	}
+
+	log.Printf("Listening on port %s", port)
+	fmt.Printf("Spinning up server on port %s", port)
+	fmt.Println("Welcome to AlgoTrading.")
+	appengine.Main()
+	// server.Run(":8080")
 }

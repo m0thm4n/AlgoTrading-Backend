@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/m<0thm4n/AlgoTrading-Backend/Server"
-	"google.golang.org/appengine"
-	"os"
-	"log"
-
+	"github.com/m0thm4n/AlgoTrading-Backend/Server"
+	// "google.golang.org/appengine"
+	// "os"
+	// "log"
 )
 
 
@@ -27,6 +26,7 @@ func main() {
 	// log.Fatal(http.ListenAndServe(":8080", router))
 
 	// fmt.Println("Welcome to AlgoTrading.")
+<<<<<<< HEAD
 	Server.Run()
 
 	
@@ -41,4 +41,7 @@ func main() {
 	fmt.Println("Welcome to AlgoTrading.")
 	Server.Routes(port)
 	appengine.Main() // Start the server
+=======
+	Server.Run() // Start the server
+>>>>>>> a4793547a1b1cad9fb2cc450b90abdfe2cf45a53
 }
