@@ -38,6 +38,7 @@ func Run() {
 	log.Printf("Listening on port %s", port)
 	fmt.Printf("Spinning up server on port %s", port)
 	fmt.Println("Welcome to AlgoTrading.")
+	server.Run(":" + port)
 	appengine.Main()
 	// server.Run(":8080")
 }
